@@ -127,11 +127,79 @@
         </section>
         <section>
           <h3>Story #1 - Gym photos</h3>
-          <img
-            class="fragment fade-in"
-            src="images/gym-app.svg"
-            style="height: 100%"
-          />
+          <div class="r-stack">
+            <img
+              class="fragment fade-in-then-out"
+              src="images/gym-app.svg"
+              style="height: 100%"
+            />
+            <img
+              class="fragment fade-in-then-out"
+              src="images/gym-app-initial-setup.svg"
+              style="height: 100%"
+            />
+            <img
+              class="fragment fade-in-then-out"
+              src="images/gym-app-with-object-storage.svg"
+              style="height: 100%"
+            />
+          </div>
+        </section>
+        <section>
+          <h3>Uploading images</h3>
+          <div class="r-stack">
+            <img src="images/gym-app-upload-0.svg" class="fragment" />
+            <img src="images/gym-app-upload-1.svg" class="fragment" />
+            <img src="images/gym-app-upload-2.svg" class="fragment" />
+            <img src="images/gym-app-upload-3.svg" class="fragment" />
+            <img src="images/gym-app-upload-4.svg" class="fragment" />
+          </div>
+        </section>
+        <section>
+          <h3>Uploading images (revised)</h3>
+          <div class="r-stack">
+            <img src="images/gym-app-upload-0-revised.svg" class="fragment" />
+            <img src="images/gym-app-upload-1-revised.svg" class="fragment" />
+            <img src="images/gym-app-upload-2-revised.svg" class="fragment" />
+            <img src="images/gym-app-upload-3-revised.svg" class="fragment" />
+            <img src="images/gym-app-upload-4-revised.svg" class="fragment" />
+            <img src="images/gym-app-upload-5-revised.svg" class="fragment" />
+            <img src="images/gym-app-upload-6-revised.svg" class="fragment" />
+          </div>
+        </section>
+        <section>
+          <h3>But what about thumbnails?</h3>
+          <div class="r-stack">
+            <img
+              class="fragment fade-in-then-out"
+              src="images/gym-app.svg"
+              style="height: 100%"
+            />
+            <img
+              class="fragment fade-in-then-out"
+              src="images/gym-app-upload-thumbnail-worker.svg"
+            />
+            <img
+              src="images/gym-app-upload-6-revised.svg"
+              class="fragment fade-in-then-out"
+            />
+            <img
+              src="images/gym-app-upload-6-revised-with-thumbnail.svg"
+              class="fragment"
+            />
+          </div>
+        </section>
+        <section>
+          <h3>Generate thumbnail - demo</h3>
+          <div class="generate-thumbnail-demo">
+            <input id="generate-thumbnail-file-input" type="file" />
+            <div class="stats">
+              <p>File size: <span id="file-size">0</span></p>
+              <p>Thumbnail size: <span id="thumbnail-size">0</span></p>
+              <p>Time taken: <span id="time-taken">0</span> ms</p>
+            </div>
+          </div>
+          <div class="preview"></div>
         </section>
       </div>
     </div>
@@ -214,6 +282,64 @@
           setTimeout(() => {
             resolve();
           }, 500);
+        });
+      }
+    </script>
+
+    <script>
+      document
+        .querySelector("#generate-thumbnail-file-input")
+        .addEventListener("change", async (e) => {
+          const file = e.target.files[0];
+          const fileSize = file.size;
+          const fileSizeInMb = (fileSize / 1024 / 1024).toFixed(2);
+          document.querySelector(
+            "#file-size"
+          ).textContent = `${fileSizeInMb} MB`;
+          const start = performance.now();
+          const thumbnail = await generateThumbnail(file);
+          const thumbnailImage = new Image();
+          thumbnailImage.src = URL.createObjectURL(thumbnail);
+          document.querySelector(".preview").appendChild(thumbnailImage);
+          const end = performance.now();
+          const thumbnailSizeKb = (thumbnail.size / 1024).toFixed(2);
+          document.querySelector(
+            "#thumbnail-size"
+          ).textContent = `${thumbnailSizeKb} KB`;
+          document.querySelector("#time-taken").textContent = Math.round(
+            end - start
+          );
+        });
+
+      /**
+       * @returns {Promise<Blob>}
+       * */
+      async function generateThumbnail(file) {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+        const image = await loadImage(file);
+        canvas.width = 100;
+        canvas.height = (100 / image.width) * image.height;
+        document.querySelector(".preview").appendChild(image);
+        ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+        return new Promise((resolve) => {
+          canvas.toBlob((blob) => {
+            resolve(blob);
+          });
+        });
+      }
+
+      function loadImage(file) {
+        return new Promise((resolve) => {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            const image = new Image();
+            image.onload = () => {
+              resolve(image);
+            };
+            image.src = e.target.result;
+          };
+          reader.readAsDataURL(file);
         });
       }
     </script>

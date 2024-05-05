@@ -30,3 +30,18 @@
   display: flex;
   gap: 2rem;
 }
+
+.stats {
+  font-size: 1rem;
+}
+
+.preview {
+  display: flex;
+  gap: 2rem;
+}
+
+.preview > img {
+  flex: 1;
+  max-height: 36vh;
+  object-fit: contain;
+}
