@@ -70,8 +70,8 @@
           <div class="demo">
             <form class="demo-controls">
               <select>
-                <option value="horizontal">Horizontal</option>
                 <option value="vertical">Vertical</option>
+                <option value="horizontal">Horizontal</option>
               </select>
               <input type="number" value="2" placeholder="Number of users" />
               <button id="start-demo">Send requests</button>
@@ -159,7 +159,7 @@
             servers.appendChild(serverTemplate.cloneNode(true));
           }
           document.querySelector(".server").style.transform = isVertical
-            ? `scaleX(${numberOfUsers / 3})`
+            ? `scaleX(${Math.max(1, Math.ceil(numberOfUsers / 3))})`
             : "none";
 
           startSimulation();
