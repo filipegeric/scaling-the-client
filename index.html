@@ -271,6 +271,213 @@
             />
           </div>
         </section>
+        <section>
+          <h3>Why so many tabs?</h3>
+          <img src="images/so-many-tabs.png" alt="" />
+        </section>
+        <section data-auto-animate>
+          <h3>SharedWebWorker</h3>
+          <pre data-id="code-animation"><code data-trim data-line-numbers>
+// main.js
+const webSocket = new WebSocket("wss://api.example.com");
+webSocket.onmessage = console.log;
+webSocket.send("Hello");
+            </code></pre>
+        </section>
+        <section data-auto-animate style="height: 90%">
+          <h3>SharedWebWorker</h3>
+          <pre
+            data-id="code-animation"
+            style="height: 80%"
+          ><code data-trim data-line-numbers>
+// main.js
+const worker = new SharedWebWorker('./shared-worker.js');
+worker.port.onmessage = console.log;
+worker.port.postMessage("Hello");
+
+// shared-worker.js
+const ports = [];
+let webSocket;
+
+self.onconnect = function onConnect(e) {
+  const port = e.ports[0];
+  ports.push(port);
+  if (!webSocket) {
+    webSocket = new WebSocket("wss://api.example.com");
+  }
+  port.onmessage = e => webSocket.send(e.data);
+  webSocket.onmessage = e => 
+    ports.forEach(p => p.postMessage(e.data));
+}
+            </code></pre>
+        </section>
+        <section>
+          <h3>
+            Story #3 - Unrecognized column
+            <pre style="display: inline">patner_reference</pre>
+          </h3>
+          <div class="r-stack">
+            <img
+              src="images/ti-1.png"
+              alt=""
+              class="fragment fade-in-then-out"
+            />
+            <img
+              src="images/ti-campaigns.png"
+              alt=""
+              class="fragment fade-in-then-out"
+            />
+            <img
+              src="images/ti-campaigns-upload-dropdown.png"
+              alt=""
+              class="fragment fade-in-then-out"
+            />
+          </div>
+        </section>
+        <section>
+          <h3>Bids in csv files</h3>
+          <div class="r-stack">
+            <table class="fragment">
+              <thead>
+                <th>partner_reference</th>
+                <th>locale</th>
+                <th>bid</th>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>12345</td>
+                  <td>DE</td>
+                  <td>455</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>DE</td>
+                  <td>320</td>
+                </tr>
+                <tr>
+                  <td>AB123CD</td>
+                  <td>USA</td>
+                  <td>335</td>
+                </tr>
+                <tr>
+                  <td>XX88YY</td>
+                  <td>UK</td>
+                  <td>1200</td>
+                </tr>
+                <tr>
+                  <td>JKL789</td>
+                  <td>MX</td>
+                  <td>twenty</td>
+                </tr>
+              </tbody>
+            </table>
+            <table class="fragment">
+              <thead>
+                <th>partner_reference</th>
+                <th>locale</th>
+                <th>bid</th>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>12345</td>
+                  <td>DE</td>
+                  <td>455</td>
+                </tr>
+                <tr>
+                  <td class="error"></td>
+                  <td>DE</td>
+                  <td>320</td>
+                </tr>
+                <tr>
+                  <td>AB123CD</td>
+                  <td class="error">USA</td>
+                  <td>335</td>
+                </tr>
+                <tr>
+                  <td>XX88YY</td>
+                  <td>UK</td>
+                  <td class="error">1200</td>
+                </tr>
+                <tr>
+                  <td>JKL789</td>
+                  <td>MX</td>
+                  <td class="error">twenty</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <section>
+          <h3>How it works?</h3>
+          <div class="r-stack">
+            <img
+              src="images/ti-campaigns-upload-dropdown.png"
+              alt=""
+              class="fragment fade-in-then-out"
+            />
+            <img
+              src="images/ti-campaigns-upload-success.png"
+              alt=""
+              class="fragment fade-in-then-out"
+            />
+            <img
+              src="images/ti-campaigns-history-tab-in-progress.png"
+              alt=""
+              class="fragment fade-in-then-out"
+            />
+            <img
+              src="images/ti-campaigns-history-tab-partial-success.png"
+              alt=""
+              class="fragment fade-in-then-out"
+            />
+            <img
+              src="images/ti-campaigns-download-summary-file.png"
+              alt=""
+              class="fragment fade-in-then-out"
+            />
+            <img
+              src="images/ti-campaigns-show-summary-file.png"
+              alt=""
+              class="fragment fade-in-then-out"
+            />
+          </div>
+        </section>
+        <section>
+          <h3>Shorter feedback loop</h3>
+          <div class="r-stack">
+            <img
+              src="images/ti-campaigns-upload-dropdown.png"
+              alt=""
+              class="fragment fade-in-then-out"
+            />
+            <img
+              src="images/ti-validate-csv-modal.png"
+              alt=""
+              class="fragment fade-in-then-out"
+            />
+            <img
+              src="images/ti-validate-csv-modal-issues-file.png"
+              alt=""
+              class="fragment fade-in-then-out"
+            />
+          </div>
+        </section>
+        <section>
+          <h3>Why WebWorkers?</h3>
+          <div>TODO: web workers demo with visible code and color picker</div>
+        </section>
+        <section style="height: 100%">
+          <div
+            style="
+              height: 100%;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+            "
+          >
+            <h3>The End</h3>
+          </div>
+        </section>
       </div>
     </div>
 
