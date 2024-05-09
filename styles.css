@@ -50,10 +50,11 @@
   font-size: 1em !important;
 }
 
-table,
+table.csv,
 table th,
 table td {
   border: solid 1px var(--r-main-color);
+  font-size: 0.75em;
 }
 
 td.error {

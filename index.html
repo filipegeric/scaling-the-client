@@ -337,68 +337,80 @@ self.onconnect = function onConnect(e) {
         <section>
           <h3>Bids in csv files</h3>
           <div class="r-stack">
-            <table class="fragment">
+            <table class="fragment csv">
               <thead>
+                <th>1</th>
                 <th>partner_reference</th>
                 <th>locale</th>
                 <th>bid</th>
               </thead>
               <tbody>
                 <tr>
+                  <td>2</td>
                   <td>12345</td>
                   <td>DE</td>
                   <td>455</td>
                 </tr>
                 <tr>
+                  <td>3</td>
                   <td></td>
                   <td>DE</td>
                   <td>320</td>
                 </tr>
                 <tr>
+                  <td>4</td>
                   <td>AB123CD</td>
                   <td>USA</td>
                   <td>335</td>
                 </tr>
                 <tr>
+                  <td>5</td>
                   <td>XX88YY</td>
                   <td>UK</td>
                   <td>1200</td>
                 </tr>
                 <tr>
+                  <td>6</td>
                   <td>JKL789</td>
                   <td>MX</td>
                   <td>twenty</td>
                 </tr>
               </tbody>
             </table>
-            <table class="fragment">
+            <table class="fragment csv">
               <thead>
+                <th>1</th>
                 <th>partner_reference</th>
                 <th>locale</th>
                 <th>bid</th>
               </thead>
               <tbody>
                 <tr>
+                  <td>2</td>
                   <td>12345</td>
                   <td>DE</td>
                   <td>455</td>
                 </tr>
                 <tr>
+                  <td>3</td>
                   <td class="error"></td>
                   <td>DE</td>
                   <td>320</td>
                 </tr>
                 <tr>
+                  <td>4</td>
                   <td>AB123CD</td>
                   <td class="error">USA</td>
                   <td>335</td>
                 </tr>
                 <tr>
+                  <td>5</td>
                   <td>XX88YY</td>
                   <td>UK</td>
                   <td class="error">1200</td>
                 </tr>
                 <tr>
+                  <td>6</td>
                   <td>JKL789</td>
                   <td>MX</td>
                   <td class="error">twenty</td>
@@ -408,7 +420,7 @@ self.onconnect = function onConnect(e) {
           </div>
         </section>
         <section>
-          <h3>How it works?</h3>
+          <h3>How it used to work</h3>
           <div class="r-stack">
             <img
               src="images/ti-campaigns-upload-dropdown.png"
@@ -421,25 +433,66 @@ self.onconnect = function onConnect(e) {
               class="fragment fade-in-then-out"
             />
             <img
-              src="images/ti-campaigns-history-tab-in-progress.png"
+              src="images/ti-history-in-progress.png"
               alt=""
               class="fragment fade-in-then-out"
             />
             <img
-              src="images/ti-campaigns-history-tab-partial-success.png"
+              src="images/ti-history-partial-success.png"
               alt=""
               class="fragment fade-in-then-out"
             />
             <img
-              src="images/ti-campaigns-download-summary-file.png"
+              src="images/ti-history-download.png"
               alt=""
               class="fragment fade-in-then-out"
             />
-            <img
-              src="images/ti-campaigns-show-summary-file.png"
-              alt=""
-              class="fragment fade-in-then-out"
-            />
+            <table class="fragment csv">
+              <thead>
+                <th>1</th>
+                <th>partner_reference</th>
+                <th>locale</th>
+                <th>bid</th>
+                <th>note</th>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>2</td>
+                  <td>12345</td>
+                  <td>DE</td>
+                  <td>455</td>
+                  <td>Bid applied</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td></td>
+                  <td>DE</td>
+                  <td>320</td>
+                  <td>Missing partner reference</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>AB123CD</td>
+                  <td>USA</td>
+                  <td>335</td>
+                  <td>USA is not a valid locale</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>XX88YY</td>
+                  <td>UK</td>
+                  <td>1200</td>
+                  <td>Applied maximum bid of 600</td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>JKL789</td>
+                  <td>MX</td>
+                  <td>twenty</td>
+                  <td>Bid must be a number</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </section>
         <section>
@@ -451,20 +504,149 @@ self.onconnect = function onConnect(e) {
               class="fragment fade-in-then-out"
             />
             <img
-              src="images/ti-validate-csv-modal.png"
+              src="images/ti-issues-modal-blocked.png"
               alt=""
               class="fragment fade-in-then-out"
             />
             <img
-              src="images/ti-validate-csv-modal-issues-file.png"
+              src="images/ti-issues-modal.png"
               alt=""
               class="fragment fade-in-then-out"
             />
+            <div class="fragment" style="display: flex; gap: 1em">
+              <table class="csv">
+                <thead>
+                  <th>1</th>
+                  <th>partner_reference</th>
+                  <th>locale</th>
+                  <th>bid</th>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>2</td>
+                    <td>12345</td>
+                    <td>DE</td>
+                    <td>455</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td></td>
+                    <td>DE</td>
+                    <td>320</td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>AB123CD</td>
+                    <td>USA</td>
+                    <td>335</td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td>XX88YY</td>
+                    <td>UK</td>
+                    <td>1200</td>
+                  </tr>
+                  <tr>
+                    <td>6</td>
+                    <td>JKL789</td>
+                    <td>MX</td>
+                    <td>twenty</td>
+                  </tr>
+                </tbody>
+              </table>
+              <table class="csv">
+                <thead>
+                  <th>row</th>
+                  <th>type</th>
+                  <th>message</th>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>3</td>
+                    <td>error</td>
+                    <td>Field partner_reference is required</td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>error</td>
+                    <td>Field locale has invalid locale code: USA</td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td>warning</td>
+                    <td>Field bid should be at most 600</td>
+                  </tr>
+                  <tr>
+                    <td>6</td>
+                    <td>error</td>
+                    <td>Field bid must be an integer</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </section>
         <section>
           <h3>Why WebWorkers?</h3>
-          <div>TODO: web workers demo with visible code and color picker</div>
+          <div class="web-workers-demo">
+            <input type="number" id="size" value="1000000" />
+            <button id="find-max">find-max</button>
+            <button id="find-max-worker">find-max-worker</button>
+            <input type="color" value="#ff0000" />
+            <div class="r-stack">
+              <pre class="fragment fade-in-then-out">
+                <code data-trim data-line-numbers>
+                  function findMax(size) {
+                    let max = 0;
+                    for (let i = 0; i < size; i++) {
+                      max = Math.max(max, Math.random());
+                    }
+                    return max;
+                  }
+
+                  function getSize() {
+                    const size = document.getElementById("size").value;
+                    return Number(size);
+                  }
+                </code>
+              </pre>
+              <div
+                class="fragment"
+                style="display: flex; gap: 1em; max-width: 100%"
+              >
+                <pre>
+                  <code data-trim data-line-numbers>
+                    document
+                      .getElementById("find-max")
+                      .addEventListener("click", (e) => {
+                        e.target.textContent = "Calculating...";
+                        const max = findMax(getSize());
+                        e.target.textContent = `Max: ${max}`;
+                      });
+                  </code>
+                </pre>
+                <pre>
+                  <code data-trim data-line-numbers>
+                    document
+                      .getElementById("find-max-worker")
+                      .addEventListener("click", (event) => {
+                        event.target.textContent = "Calculating...";
+                        const worker = new Worker("worker.js");
+                        worker.postMessage(getSize());
+                        worker.onmessage = (e) => 
+                          event.target.textContent = `Max: ${e.data}`;
+                      });
+                    // worker.js
+                    self.addEventListener("message", function (e) {
+                      const size = e.data;
+                      const max = findMax(size);
+                      self.postMessage(max);
+                    });
+                  </code>
+                </pre>
+              </div>
+            </div>
+          </div>
         </section>
         <section style="height: 100%">
           <div
@@ -621,6 +803,41 @@ self.onconnect = function onConnect(e) {
           reader.readAsDataURL(file);
         });
       }
+    </script>
+
+    <!-- WebWorker demo -->
+    <script>
+      function findMax(size) {
+        let max = 0;
+        for (let i = 0; i < size; i++) {
+          max = Math.max(max, Math.random());
+        }
+        return max;
+      }
+
+      function getSize() {
+        const size = document.getElementById("size").value;
+        return Number(size);
+      }
+
+      document.getElementById("find-max").addEventListener("click", (e) => {
+        e.target.textContent = "Calculating...";
+        setTimeout(() => {
+          const max = findMax(getSize());
+          e.target.textContent = `Max: ${max}`;
+        }, 10);
+      });
+
+      document
+        .getElementById("find-max-worker")
+        .addEventListener("click", (event) => {
+          event.target.textContent = "Calculating...";
+          const worker = new Worker("worker.js");
+          worker.postMessage(getSize());
+          worker.onmessage = (e) => {
+            event.target.textContent = `Max: ${e.data}`;
+          };
+        });
     </script>
 
     <script src="dist/reveal.js"></script>
