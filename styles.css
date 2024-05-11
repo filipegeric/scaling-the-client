@@ -65,3 +65,11 @@ th.error {
 td.warning {
   box-shadow: inset 0 0 6px 10px rgb(248, 189, 79);
 }
+
+.reveal a {
+  text-decoration: underline !important;
+}
+
+.emphasize {
+  color: var(--r-link-color);
+}

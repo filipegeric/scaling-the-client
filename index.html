@@ -119,7 +119,7 @@
           <h3>How to scale a client?</h3>
           <ul>
             <li class="fragment">
-              Reduce number of requests sent to the server - Caching
+              Reduce number of requests sent to the server
             </li>
             <li class="fragment">Let the client do the heavy lifting</li>
           </ul>
@@ -142,11 +142,6 @@
             <img
               class="fragment fade-in-then-out"
               src="images/gym-app.svg"
-              style="height: 100%"
-            />
-            <img
-              class="fragment fade-in-then-out"
-              src="images/gym-app-initial-setup.svg"
               style="height: 100%"
             />
             <img
@@ -215,11 +210,19 @@
               Avoid processing images (files) in the application server
             </li>
             <li class="fragment">
-              Use pre-signed URLs (links) for direct uploads (or even downloads)
-              to object storage
+              Use
+              <a
+                href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/ShareObjectPreSignedURL.html"
+                target="_blank"
+                class="emphasize"
+                >presigned URLs</a
+              >
+              (links) for <span class="emphasize">direct</span> uploads (or even
+              downloads) to object storage
             </li>
             <li class="fragment">
-              Generate thumbnails on the client side (if possible)
+              Generate <span class="emphasize">thumbnails</span> on the
+              <span class="emphasize">client</span> side (if possible)
             </li>
           </ul>
         </section>
@@ -234,8 +237,9 @@
         <section>
           <h3>What are WebSockets?</h3>
           <p class="fragment">
-            A communication protocol that provides full-duplex communication
-            channels over a single TCP connection.
+            A communication protocol that provides
+            <span class="emphasize">full-duplex</span> communication channels
+            over a <span class="emphasize">single TCP connection</span>.
           </p>
           <div class="r-stack">
             <img class="fragment" src="images/websocket-basic-0.svg" alt="" />
@@ -259,7 +263,7 @@
           </div>
         </section>
         <section>
-          <h3>What about scaling?</h3>
+          <h3>How do we include Bob?</h3>
           <div class="r-stack">
             <img
               src="images/websocket-scaling-pubsub-0.svg"
@@ -295,7 +299,7 @@
         </section>
         <section>
           <h3>Why so many tabs?</h3>
-          <img src="images/so-many-tabs.png" alt="" />
+          <img class="fragment fade-in" src="images/so-many-tabs.png" alt="" />
         </section>
         <section data-auto-animate>
           <h3>SharedWebWorker</h3>
@@ -337,14 +341,18 @@ self.onconnect = function onConnect(e) {
           <h3>Learnings</h3>
           <ul>
             <li class="fragment">
-              Scaling WebSocket servers requires a PubSub component (Redis,
-              Kafka, etc.)
+              Scaling WebSocket servers requires a
+              <span class="emphasize">PubSub</span> component (Redis, Kafka,
+              etc.)
             </li>
             <li class="fragment">
-              Observe how users use the application (so many tabs)
+              <span class="emphasize">Observe</span> how users
+              <span class="emphasize">use</span> the application (so many tabs)
             </li>
             <li class="fragment">
-              SharedWebWorker can be used to share WebSocket connections
+              <span class="emphasize">SharedWebWorker</span> can be used to
+              share a single WebSocket connection
+              <span class="emphasize">between tabs</span>
             </li>
           </ul>
         </section>
@@ -754,7 +762,7 @@ self.onconnect = function onConnect(e) {
           <img src="images/s3-files.png" alt="" />
         </section>
         <section>
-          <h3>Csv validation simulation</h3>
+          <h3>Csv validation demo</h3>
           <div class="web-workers-demo">
             <input type="color" value="#ff0000" />
             <input type="number" id="size" value="500000" />
@@ -814,13 +822,21 @@ self.onconnect = function onConnect(e) {
           <h3>Learnings</h3>
           <ul>
             <li class="fragment">
-              Validate CSV files on the client side (if possible)
+              <span class="emphasize">Validate</span> CSV files
+              <span class="emphasize">on the client</span> side (if possible)
             </li>
             <li class="fragment">
-              Use WebWorkers to offload heavy computations from the main thread
+              <span class="emphasize">Don't allow</span> the user to upload
+              <span class="emphasize">invalid</span> files
             </li>
             <li class="fragment">
-              Provide feedback to the user as soon as possible
+              Use <span class="emphasize">WebWorkers</span> to offload heavy
+              computations (e.g. validating large csv files)
+              <span class="emphasize">from the main thread</span>
+            </li>
+            <li class="fragment">
+              Provide <span class="emphasize">feedback</span> to the user
+              <span class="emphasize">as soon as possible</span>
             </li>
           </ul>
         </section>
