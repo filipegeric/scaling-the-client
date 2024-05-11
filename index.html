@@ -209,6 +209,21 @@
           <div class="preview"></div>
         </section>
         <section>
+          <h3>Learnings</h3>
+          <ul>
+            <li class="fragment">
+              Avoid processing images (files) in the application server
+            </li>
+            <li class="fragment">
+              Use pre-signed URLs (links) for direct uploads (or even downloads)
+              to object storage
+            </li>
+            <li class="fragment">
+              Generate thumbnails on the client side (if possible)
+            </li>
+          </ul>
+        </section>
+        <section>
           <h3>Story #2 - So many open tabs</h3>
           <img
             class="fragment fade-in"
@@ -319,6 +334,21 @@ self.onconnect = function onConnect(e) {
             </code></pre>
         </section>
         <section>
+          <h3>Learnings</h3>
+          <ul>
+            <li class="fragment">
+              Scaling WebSocket servers requires a PubSub component (Redis,
+              Kafka, etc.)
+            </li>
+            <li class="fragment">
+              Observe how users use the application (so many tabs)
+            </li>
+            <li class="fragment">
+              SharedWebWorker can be used to share WebSocket connections
+            </li>
+          </ul>
+        </section>
+        <section>
           <h3>
             Story #3 - Unrecognized column
             <pre style="display: inline">patner_reference</pre>
@@ -342,8 +372,100 @@ self.onconnect = function onConnect(e) {
           </div>
         </section>
         <section>
-          <h3>Bids in csv files</h3>
+          <h3><code>bids.csv</code></h3>
           <div class="r-stack">
+            <table class="fragment csv fade-in-then-out">
+              <thead>
+                <th>1</th>
+                <th>patner_reference</th>
+                <th>locale</th>
+                <th>bid</th>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>2</td>
+                  <td>12345</td>
+                  <td>DE</td>
+                  <td>455</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td></td>
+                  <td>DE</td>
+                  <td>320</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>AB123CD</td>
+                  <td>USA</td>
+                  <td>335</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>XX88YY</td>
+                  <td>UK</td>
+                  <td>1200</td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>JKL789</td>
+                  <td>MX</td>
+                  <td>twenty</td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td>ABAB123</td>
+                  <td>CA</td>
+                  <td>350</td>
+                </tr>
+              </tbody>
+            </table>
+            <table class="fragment csv fade-in-then-out">
+              <thead>
+                <th>1</th>
+                <th class="error">patner_reference</th>
+                <th>locale</th>
+                <th>bid</th>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>2</td>
+                  <td>12345</td>
+                  <td>DE</td>
+                  <td>455</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td></td>
+                  <td>DE</td>
+                  <td>320</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>AB123CD</td>
+                  <td>USA</td>
+                  <td>335</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>XX88YY</td>
+                  <td>UK</td>
+                  <td>1200</td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>JKL789</td>
+                  <td>MX</td>
+                  <td>twenty</td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td>ABAB123</td>
+                  <td>CA</td>
+                  <td>350</td>
+                </tr>
+              </tbody>
+            </table>
             <table class="fragment csv">
               <thead>
                 <th>1</th>
@@ -381,6 +503,12 @@ self.onconnect = function onConnect(e) {
                   <td>JKL789</td>
                   <td>MX</td>
                   <td>twenty</td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td>ABAB123</td>
+                  <td>CA</td>
+                  <td>350</td>
                 </tr>
               </tbody>
             </table>
@@ -422,6 +550,12 @@ self.onconnect = function onConnect(e) {
                   <td>MX</td>
                   <td class="error">twenty</td>
                 </tr>
+                <tr>
+                  <td>7</td>
+                  <td>ABAB123</td>
+                  <td>CA</td>
+                  <td>350</td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -454,52 +588,62 @@ self.onconnect = function onConnect(e) {
               alt=""
               class="fragment fade-in-then-out"
             />
-            <table class="fragment csv">
-              <thead>
-                <th>1</th>
-                <th>partner_reference</th>
-                <th>locale</th>
-                <th>bid</th>
-                <th>note</th>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>2</td>
-                  <td>12345</td>
-                  <td>DE</td>
-                  <td>455</td>
-                  <td>Bid applied</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td></td>
-                  <td>DE</td>
-                  <td>320</td>
-                  <td>Missing partner reference</td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>AB123CD</td>
-                  <td>USA</td>
-                  <td>335</td>
-                  <td>USA is not a valid locale</td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>XX88YY</td>
-                  <td>UK</td>
-                  <td>1200</td>
-                  <td>Applied maximum bid of 600</td>
-                </tr>
-                <tr>
-                  <td>6</td>
-                  <td>JKL789</td>
-                  <td>MX</td>
-                  <td>twenty</td>
-                  <td>Bid must be a number</td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="fragment">
+              <code>summary.csv</code>
+              <table class="csv">
+                <thead>
+                  <th>1</th>
+                  <th>partner_reference</th>
+                  <th>locale</th>
+                  <th>bid</th>
+                  <th>note</th>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>2</td>
+                    <td>12345</td>
+                    <td>DE</td>
+                    <td>455</td>
+                    <td>Bid applied</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td></td>
+                    <td>DE</td>
+                    <td>320</td>
+                    <td>Missing partner reference</td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>AB123CD</td>
+                    <td>USA</td>
+                    <td>335</td>
+                    <td>USA is not a valid locale</td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td>XX88YY</td>
+                    <td>UK</td>
+                    <td>1200</td>
+                    <td>Applied maximum bid of 600</td>
+                  </tr>
+                  <tr>
+                    <td>6</td>
+                    <td>JKL789</td>
+                    <td>MX</td>
+                    <td>twenty</td>
+                    <td>Bid must be a number</td>
+                  </tr>
+                  <tr>
+                    <td>7</td>
+                    <td>ABAB123</td>
+                    <td>CA</td>
+                    <td>350</td>
+                    <td>CA is not an active locale</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </section>
         <section>
@@ -521,99 +665,111 @@ self.onconnect = function onConnect(e) {
               class="fragment fade-in-then-out"
             />
             <div class="fragment" style="display: flex; gap: 1em">
-              <table class="csv">
-                <thead>
-                  <th>1</th>
-                  <th>partner_reference</th>
-                  <th>locale</th>
-                  <th>bid</th>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>2</td>
-                    <td>12345</td>
-                    <td>DE</td>
-                    <td>455</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td></td>
-                    <td>DE</td>
-                    <td>320</td>
-                  </tr>
-                  <tr>
-                    <td>4</td>
-                    <td>AB123CD</td>
-                    <td>USA</td>
-                    <td>335</td>
-                  </tr>
-                  <tr>
-                    <td>5</td>
-                    <td>XX88YY</td>
-                    <td>UK</td>
-                    <td>1200</td>
-                  </tr>
-                  <tr>
-                    <td>6</td>
-                    <td>JKL789</td>
-                    <td>MX</td>
-                    <td>twenty</td>
-                  </tr>
-                </tbody>
-              </table>
-              <table class="csv">
-                <thead>
-                  <th>row</th>
-                  <th>type</th>
-                  <th>message</th>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>3</td>
-                    <td>error</td>
-                    <td>Field partner_reference is required</td>
-                  </tr>
-                  <tr>
-                    <td>4</td>
-                    <td>error</td>
-                    <td>Field locale has invalid locale code: USA</td>
-                  </tr>
-                  <tr>
-                    <td>5</td>
-                    <td>warning</td>
-                    <td>Field bid should be at most 600</td>
-                  </tr>
-                  <tr>
-                    <td>6</td>
-                    <td>error</td>
-                    <td>Field bid must be an integer</td>
-                  </tr>
-                </tbody>
-              </table>
+              <div>
+                <code>bids.csv</code>
+                <table class="csv">
+                  <thead>
+                    <th>1</th>
+                    <th>partner_reference</th>
+                    <th>locale</th>
+                    <th>bid</th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>2</td>
+                      <td>12345</td>
+                      <td>DE</td>
+                      <td>455</td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td class="error"></td>
+                      <td>DE</td>
+                      <td>320</td>
+                    </tr>
+                    <tr>
+                      <td>4</td>
+                      <td>AB123CD</td>
+                      <td class="error">USA</td>
+                      <td>335</td>
+                    </tr>
+                    <tr>
+                      <td>5</td>
+                      <td>XX88YY</td>
+                      <td>UK</td>
+                      <td class="warning">1200</td>
+                    </tr>
+                    <tr>
+                      <td>6</td>
+                      <td>JKL789</td>
+                      <td>MX</td>
+                      <td class="error">twenty</td>
+                    </tr>
+                    <tr>
+                      <td>7</td>
+                      <td>ABAB123</td>
+                      <td>CA</td>
+                      <td>350</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div>
+                <code>issues.csv</code>
+                <table class="csv">
+                  <thead>
+                    <th>row</th>
+                    <th>type</th>
+                    <th>message</th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>3</td>
+                      <td>error</td>
+                      <td>Field partner_reference is required</td>
+                    </tr>
+                    <tr>
+                      <td>4</td>
+                      <td>error</td>
+                      <td>Field locale has invalid locale code: USA</td>
+                    </tr>
+                    <tr>
+                      <td>5</td>
+                      <td>warning</td>
+                      <td>Field bid should be at most 600</td>
+                    </tr>
+                    <tr>
+                      <td>6</td>
+                      <td>error</td>
+                      <td>Field bid must be an integer</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </section>
         <section>
-          <h3>Why WebWorkers?</h3>
+          <h3>Bid files can be large</h3>
+          <img src="images/s3-files.png" alt="" />
+        </section>
+        <section>
+          <h3>Csv validation simulation</h3>
           <div class="web-workers-demo">
-            <input type="number" id="size" value="1000000" />
-            <button id="find-max">find-max</button>
-            <button id="find-max-worker">find-max-worker</button>
             <input type="color" value="#ff0000" />
+            <input type="number" id="size" value="500000" />
+            <button id="validate">validate</button>
+            <button id="validate-worker">validate-worker</button>
             <div class="r-stack">
               <pre class="fragment fade-in-then-out">
                 <code data-trim data-line-numbers>
-                  function findMax(size) {
-                    let max = 0;
-                    for (let i = 0; i < size; i++) {
-                      max = Math.max(max, Math.random());
+                  function validate(rows) {
+                    const errors = [];
+                    for (const row of rows) {
+                      const error = validateRow(row);
+                      if (error) errors.push(error);
                     }
-                    return max;
-                  }
-
-                  function getSize() {
-                    const size = document.getElementById("size").value;
-                    return Number(size);
+                    return errors;
                   }
                 </code>
               </pre>
@@ -624,36 +780,49 @@ self.onconnect = function onConnect(e) {
                 <pre>
                   <code data-trim data-line-numbers>
                     document
-                      .getElementById("find-max")
+                      .getElementById("validate")
                       .addEventListener("click", (e) => {
-                        e.target.textContent = "Calculating...";
-                        const max = findMax(getSize());
-                        e.target.textContent = `Max: ${max}`;
+                        e.target.textContent = "Validating...";
+                        validate(getRows());
+                        e.target.textContent = "Done!";
                       });
                   </code>
                 </pre>
                 <pre>
                   <code data-trim data-line-numbers>
                     document
-                      .getElementById("find-max-worker")
+                      .getElementById("validate-worker")
                       .addEventListener("click", (event) => {
-                        event.target.textContent = "Calculating...";
+                        event.target.textContent = "Validating...";
                         const worker = new Worker("worker.js");
-                        worker.postMessage(getSize());
+                        worker.postMessage(getRows());
                         worker.onmessage = (e) => 
-                          event.target.textContent = `Max: ${e.data}`;
+                          event.target.textContent = `Done!`;
                       });
                     // worker.js
                     self.addEventListener("message", function (e) {
-                      const size = e.data;
-                      const max = findMax(size);
-                      self.postMessage(max);
+                      const errors = validate(e.data);
+                      self.postMessage(errors);
                     });
                   </code>
                 </pre>
               </div>
             </div>
           </div>
+        </section>
+        <section>
+          <h3>Learnings</h3>
+          <ul>
+            <li class="fragment">
+              Validate CSV files on the client side (if possible)
+            </li>
+            <li class="fragment">
+              Use WebWorkers to offload heavy computations from the main thread
+            </li>
+            <li class="fragment">
+              Provide feedback to the user as soon as possible
+            </li>
+          </ul>
         </section>
         <section style="height: 100%">
           <div
@@ -814,36 +983,35 @@ self.onconnect = function onConnect(e) {
 
     <!-- WebWorker demo -->
     <script>
-      function findMax(size) {
-        let max = 0;
-        for (let i = 0; i < size; i++) {
-          max = Math.max(max, Math.random());
+      function simulateValidate(numberOfRows) {
+        for (let i = 0; i < numberOfRows; i++) {
+          const start = Date.now();
+          while (Date.now() - start < 1) {}
         }
-        return max;
       }
 
       function getSize() {
         const size = document.getElementById("size").value;
-        return Number(size);
+        return Math.floor(Number(size) / 1000);
       }
 
-      document.getElementById("find-max").addEventListener("click", (e) => {
-        e.target.textContent = "Calculating...";
+      document.getElementById("validate").addEventListener("click", (e) => {
+        e.target.textContent = "Validating...";
         setTimeout(() => {
-          const max = findMax(getSize());
-          e.target.textContent = `Max: ${max}`;
+          const max = simulateValidate(getSize());
+          e.target.textContent = `Done!`;
         }, 10);
       });
 
+      const worker = new Worker("worker.js");
+      worker.onmessage = (e) => {
+        document.getElementById("validate-worker").textContent = `Done!`;
+      };
       document
-        .getElementById("find-max-worker")
+        .getElementById("validate-worker")
         .addEventListener("click", (event) => {
-          event.target.textContent = "Calculating...";
-          const worker = new Worker("worker.js");
           worker.postMessage(getSize());
-          worker.onmessage = (e) => {
-            event.target.textContent = `Max: ${e.data}`;
-          };
+          event.target.textContent = "Validating...";
         });
     </script>
 

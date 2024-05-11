@@ -57,6 +57,11 @@ table td {
   font-size: 0.75em;
 }
 
-td.error {
+td.error,
+th.error {
   box-shadow: inset 0 0 6px 10px red;
+}
+
+td.warning {
+  box-shadow: inset 0 0 6px 10px rgb(248, 189, 79);
 }

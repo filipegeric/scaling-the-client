@@ -1,15 +1,14 @@
-function findMax(size) {
-  let max = 0;
-  for (let i = 0; i < size; i++) {
-    max = Math.max(max, Math.random());
+function simulateValidate(numberOfRows) {
+  for (let i = 0; i < numberOfRows; i++) {
+    const start = Date.now();
+    while (Date.now() - start < 1) {}
   }
-  return max;
 }
 
 self.addEventListener("message", function (event) {
   const size = event.data;
 
-  const maxNumber = findMax(size);
+  simulateValidate(size);
 
-  self.postMessage(maxNumber);
+  self.postMessage("Done!");
 });
