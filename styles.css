@@ -73,3 +73,11 @@ td.warning {
 .emphasize {
   color: var(--r-link-color);
 }
+
+body.beige img.diagram {
+  filter: invert(70%);
+}
+
+body.beige img.diagram.rotate-hue {
+  filter: invert(70%) hue-rotate(125);
+}
